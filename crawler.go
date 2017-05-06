@@ -8,7 +8,7 @@ import (
 	"encoding/json"
 )
 
-type Status struct {
+type Response struct {
 	CurrentUserUrl                   string `json:"current_user_url"`
 	CurrentUserAuthorizationsHtmlUrl string `json:"current_user_authorizations_html_url"`
 	AuthorizationsUrl                string `json:"authorizations_url"`
@@ -44,8 +44,6 @@ type Status struct {
 const ApiEndpoint string = "https://api.github.com/"
 
 func main() {
-	values := Status{}
-
 	response, err := http.Get(ApiEndpoint)
 	exitWithMessageIfExistErr(err)
 	defer response.Body.Close()
@@ -53,6 +51,7 @@ func main() {
 	body, err := ioutil.ReadAll(response.Body)
 	exitWithMessageIfExistErr(err)
 
+	values := Response{}
 	json.Unmarshal(body, &values)
 
 	fmt.Printf("Response: \n%s", values)

@@ -26,10 +26,10 @@ func main() {
 	body, err := ioutil.ReadAll(response.Body)
 	exitWithErrorMessage(err)
 
-	values := Response{}.Statuses
-	json.Unmarshal([]byte(body), &values)
+	values := Response{}
+	json.Unmarshal([]byte(body), &values.Statuses)
 
-	fmt.Println(values)
+	fmt.Println(values.Statuses)
 }
 
 func exitWithErrorMessage(err error) {

@@ -41,7 +41,7 @@ type Response struct {
 	UserSearchUrl                    string `json:"user_search_url"`
 }
 
-const ApiEndpoint string = "https://api.github.com/"
+const ApiEndpoint = "https://api.github.com/"
 
 func main() {
 	response, err := http.Get(ApiEndpoint)
